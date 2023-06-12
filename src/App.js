@@ -7,7 +7,6 @@ import Rodape from './componentes/Rodape';
 function App() {
   const [colaboradores, setColaboradores] = useState([]);
   const cadastrarNovoColaborador = colaborador => {
-    console.log(colaborador);
     setColaboradores([...colaboradores, colaborador]);
   };
 
