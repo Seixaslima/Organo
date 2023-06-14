@@ -5,19 +5,18 @@ import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
 
 function App() {
-  const times = [
-    { nome: 'Programação', corPrimaria: '#57C278', corSecundaria: '#d9f7e9' },
-    { nome: 'Front-End', corPrimaria: '#82CFFA', corSecundaria: '#E8F8FF' },
-    { nome: 'Data Science', corPrimaria: '#A6D157', corSecundaria: '#F0F8E2' },
-    { nome: 'Devops', corPrimaria: '#E06B69', corSecundaria: '#FDE7E8' },
-    { nome: 'UX e Design', corPrimaria: '#DB6EBF', corSecundaria: '#FAE9F5' },
-    { nome: 'Mobile', corPrimaria: '#FFBA05', corSecundaria: '#FFF5D9' },
+  const [times, setTimes] = useState([
+    { nome: 'Programação', cor: '#57C278' },
+    { nome: 'Front-End', cor: '#82CFFA' },
+    { nome: 'Data Science', cor: '#A6D157' },
+    { nome: 'Devops', cor: '#E06B69' },
+    { nome: 'UX e Design', cor: '#DB6EBF' },
+    { nome: 'Mobile', cor: '#FFBA05' },
     {
       nome: 'Inovação e Gestão',
-      corPrimaria: '#FF8A29',
-      corSecundaria: '#FFEEDF'
+      cor: '#FF8A29'
     }
-  ];
+  ]);
   //nomes iniciais para fim de teste
   const inicial = [
     {
@@ -201,6 +200,17 @@ function App() {
     setColaboradores([...colaboradores, colaborador]);
   };
 
+  function mudarCorTime(cor, nome) {
+    setTimes(
+      times.map(time => {
+        if (time.nome === nome) {
+          time.cor = cor;
+        }
+        return time;
+      })
+    );
+  }
+
   return (
     <div>
       <Banner />
@@ -213,9 +223,8 @@ function App() {
       {times.map(time => (
         <Time
           key={time.nome}
-          nome={time.nome}
-          corPrimaria={time.corPrimaria}
-          corSecundaria={time.corSecundaria}
+          time={time}
+          mudarCor={mudarCorTime}
           aoDeletar={deletarColaborador}
           colaboradores={colaboradores.filter(
             colaborador => colaborador.time === time.nome
