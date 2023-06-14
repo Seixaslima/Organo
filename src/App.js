@@ -190,9 +190,11 @@ function App() {
     }
   ];
 
+  function deletarColaborador() {
+    console.log('deletando colaborador');
+  }
+
   const [colaboradores, setColaboradores] = useState(inicial);
-
-
 
   const cadastrarNovoColaborador = colaborador => {
     console.log(colaborador);
@@ -214,6 +216,7 @@ function App() {
           nome={time.nome}
           corPrimaria={time.corPrimaria}
           corSecundaria={time.corSecundaria}
+          aoDeletar={deletarColaborador}
           colaboradores={colaboradores.filter(
             colaborador => colaborador.time === time.nome
           )}
