@@ -9,6 +9,8 @@ const Formulario = props => {
   const [cargo, setCargo] = useState('');
   const [imagem, setImagem] = useState('');
   const [time, setTime] = useState('');
+  const [nomeTime, setNomeTime] = useState('');
+  const [corTime, setCorTime] = useState('');
 
   const aoEnviar = evento => {
     evento.preventDefault();
@@ -18,6 +20,13 @@ const Formulario = props => {
     setImagem('');
     setTime('');
   };
+
+  function criarTime(evento) {
+    evento.preventDefault();
+    props.criarNovoTime({ nome: nomeTime, cor: corTime });
+    setNomeTime('');
+    setCorTime('');
+  }
 
   return (
     <section className="formulario">
@@ -50,6 +59,25 @@ const Formulario = props => {
           aoAlterado={valor => setTime(valor)}
         />
         <Botao>Criar card</Botao>
+      </form>
+
+      <form onSubmit={criarTime}>
+        <CampoTexto
+          obrigatorio={true}
+          label="Time"
+          placeholder="Digite o nome do novo time"
+          valor={nomeTime}
+          aoAlterado={valor => setNomeTime(valor)}
+        />
+        <CampoTexto
+          obrigatorio={true}
+          label="Cor do time"
+          placeholder="Digite seu cargo"
+          valor={corTime}
+          aoAlterado={valor => setCorTime(valor)}
+        />
+
+        <Botao>Criar novo time</Botao>
       </form>
     </section>
   );

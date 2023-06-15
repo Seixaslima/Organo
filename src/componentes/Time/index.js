@@ -14,7 +14,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
       >
         <input
           type="color"
-          onChange={evento => mudarCor(evento.target.value, time.nome)}
+          onChange={evento => mudarCor(evento.target.value, time.id)}
           value={time.cor}
           className="input-cor"
         />
@@ -23,9 +23,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
           {colaboradores.map(colaborador => (
             <Colaborador
               key={colaborador.nome}
-              nome={colaborador.nome}
-              cargo={colaborador.cargo}
-              imagem={colaborador.imagem}
+              colaborador={colaborador}
               corPrimaria={time.cor}
               aoDeletar={aoDeletar}
             />
