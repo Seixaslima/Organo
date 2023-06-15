@@ -1,5 +1,5 @@
 import './Formulario.css';
-import CampoTexto from '../CampoTexto';
+import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import Botao from '../Botao';
 import { useState } from 'react';
@@ -31,21 +31,21 @@ const Formulario = props => {
   return (
     <section className="formulario">
       <form onSubmit={aoEnviar}>
-        <CampoTexto
+        <Campo
           obrigatorio={true}
           label="Nome"
           placeholder="Digite seu nome"
           valor={nome}
           aoAlterado={valor => setNome(valor)}
         />
-        <CampoTexto
+        <Campo
           obrigatorio={true}
           label="Cargo"
           placeholder="Digite seu cargo"
           valor={cargo}
           aoAlterado={valor => setCargo(valor)}
         />
-        <CampoTexto
+        <Campo
           label="Imagem"
           placeholder="Informe o endereço da imagem"
           valor={imagem}
@@ -62,15 +62,16 @@ const Formulario = props => {
       </form>
 
       <form onSubmit={criarTime}>
-        <CampoTexto
-          obrigatorio={true}
+        <Campo
+          obrigatorio
           label="Time"
           placeholder="Digite o nome do novo time"
           valor={nomeTime}
           aoAlterado={valor => setNomeTime(valor)}
         />
-        <CampoTexto
-          obrigatorio={true}
+        <Campo
+          type="color"
+          obrigatorio
           label="Cor do time"
           placeholder="Digite seu cargo"
           valor={corTime}
