@@ -3,8 +3,17 @@ import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import Botao from '../Botao';
 import { useState } from 'react';
+import { IColaborador } from '../../compartilhado/interfaces/IColaborador';
+import { ITime } from '../../compartilhado/interfaces/ITime';
+import { Interface } from 'readline';
 
-const Formulario = props => {
+interface FormularioProps {
+  aoNovoColaboradorCadastrado: ({ }) => void
+  criarNovoTime: ({ }) => void
+  times: string[]
+}
+
+const Formulario = (props: FormularioProps) => {
   const [nome, setNome] = useState('');
   const [cargo, setCargo] = useState('');
   const [imagem, setImagem] = useState('');
@@ -12,7 +21,7 @@ const Formulario = props => {
   const [nomeTime, setNomeTime] = useState('');
   const [corTime, setCorTime] = useState('');
 
-  const aoEnviar = evento => {
+  const aoEnviar = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
     props.aoNovoColaboradorCadastrado({ nome, cargo, imagem, time });
     setNome('');
@@ -21,7 +30,7 @@ const Formulario = props => {
     setTime('');
   };
 
-  function criarTime(evento) {
+  function criarTime(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
     props.criarNovoTime({ nome: nomeTime, cor: corTime });
     setNomeTime('');
@@ -61,7 +70,7 @@ const Formulario = props => {
         <Botao>Criar card</Botao>
       </form>
 
-      <form onSubmit={criarTime}>
+      <form onSubmit={evento => criarTime(evento)}>
         <Campo
           obrigatorio
           label="Time"

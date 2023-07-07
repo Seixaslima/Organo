@@ -1,12 +1,12 @@
 import './Campo.css';
 
 interface CampoProps {
-  type: string
+  type?: string
   label: string
   placeholder: string
   valor: string
   aoAlterado: (valor: string) => void
-  obrigatorio: boolean
+  obrigatorio?: boolean
 }
 
 const Campo = ({
