@@ -1,7 +1,7 @@
 import './Campo.css';
 
 interface CampoProps {
-  type?: string
+  type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week"
   label: string
   placeholder: string
   valor: string

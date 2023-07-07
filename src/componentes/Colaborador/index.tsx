@@ -32,6 +32,7 @@ const Colaborador = ({ colaborador, corPrimaria, aoDeletar, aoFavoritar }: Colab
       <div className="corpo">
         <h4>{colaborador.nome}</h4>
         <h5>{colaborador.cargo} </h5>
+        <h5>{new Date(colaborador.data).toLocaleDateString()}</h5>
         <div className="favoritos">
           {colaborador.favorito ? (
             <AiFillHeart {...propsFavorito} color="#FF0000" />

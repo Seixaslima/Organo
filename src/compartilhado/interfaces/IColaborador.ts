@@ -5,6 +5,7 @@ export interface IColaborador {
   cargo: string
   imagem: string
   time: string
+  data: string
 }
 
 export interface INovoColaborador {
@@ -12,4 +13,5 @@ export interface INovoColaborador {
   cargo: string
   imagem: string
   time: string
+  data: string
 }
