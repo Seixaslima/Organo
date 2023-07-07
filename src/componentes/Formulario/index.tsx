@@ -64,7 +64,7 @@ const Formulario = (props: FormularioProps) => {
           label='Data de entrada no time'
           placeholder=''
           valor={data}
-          aoAlterado={valor => { console.log(valor); setData(valor) }}
+          aoAlterado={valor => setData(valor)}
           type='date'
           obrigatorio={true}
         />
