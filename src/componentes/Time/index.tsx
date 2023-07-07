@@ -1,10 +1,20 @@
 import hexToRgba from 'hex-to-rgba';
-import Colaborador from '../Colaborador';
 import './Time.css';
+import { ITime } from '../../compartilhado/interfaces/ITime';
+import { IColaborador } from '../../compartilhado/interfaces/IColaborador';
+import Colaborador from '../Colaborador';
 
-const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }) => {
+interface TimeProps {
+  time: ITime
+  colaboradores: IColaborador[]
+  aoDeletar: (id: string) => void
+  mudarCor: (cor: string, id: string) => void
+  aoFavoritar: (id: string) => void
+}
+
+const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }: TimeProps) => {
   return (
-    colaboradores.length > 0 && (
+    colaboradores.length > 0 ? (
       <section
         className="time"
         style={{
@@ -31,7 +41,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }) => {
           ))}
         </div>
       </section>
-    )
+    ) : <></>
   );
 };
 

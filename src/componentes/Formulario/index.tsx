@@ -3,29 +3,38 @@ import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import Botao from '../Botao';
 import { useState } from 'react';
+import { INovoColaborador } from '../../compartilhado/interfaces/IColaborador';
+import { INovoTime } from '../../compartilhado/interfaces/ITime';
 
-const Formulario = props => {
+interface FormularioProps {
+  aoNovoColaboradorCadastrado: (novoColaborador: INovoColaborador) => void
+  criarNovoTime: (novoTime: INovoTime) => void
+  times: string[]
+}
+
+const Formulario = (props: FormularioProps) => {
   const [nome, setNome] = useState('');
   const [cargo, setCargo] = useState('');
   const [imagem, setImagem] = useState('');
   const [time, setTime] = useState('');
+  const [data, setData] = useState('')
   const [nomeTime, setNomeTime] = useState('');
-  const [corTime, setCorTime] = useState('');
+  const [corTime, setCorTime] = useState('#000000');
 
-  const aoEnviar = evento => {
+  const aoEnviar = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    props.aoNovoColaboradorCadastrado({ nome, cargo, imagem, time });
+    props.aoNovoColaboradorCadastrado({ nome, cargo, imagem, time, data });
     setNome('');
     setCargo('');
     setImagem('');
     setTime('');
   };
 
-  function criarTime(evento) {
+  function criarTime(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
     props.criarNovoTime({ nome: nomeTime, cor: corTime });
     setNomeTime('');
-    setCorTime('');
+    setCorTime('#000000');
   }
 
   return (
@@ -51,6 +60,14 @@ const Formulario = props => {
           valor={imagem}
           aoAlterado={valor => setImagem(valor)}
         />
+        <Campo
+          label='Data de entrada no time'
+          placeholder=''
+          valor={data}
+          aoAlterado={valor => { console.log(valor); setData(valor) }}
+          type='date'
+          obrigatorio={true}
+        />
         <ListaSuspensa
           obrigatorio={true}
           label="Time"
@@ -61,7 +78,7 @@ const Formulario = props => {
         <Botao>Criar card</Botao>
       </form>
 
-      <form onSubmit={criarTime}>
+      <form onSubmit={evento => criarTime(evento)}>
         <Campo
           obrigatorio
           label="Time"
