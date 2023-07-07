@@ -14,7 +14,7 @@ interface TimeProps {
 
 const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }: TimeProps) => {
   return (
-    colaboradores.length > 0 && (
+    colaboradores.length > 0 ? (
       <section
         className="time"
         style={{
@@ -41,7 +41,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }: TimePro
           ))}
         </div>
       </section>
-    )
+    ) : <></>
   );
 };
 
