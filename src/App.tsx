@@ -4,9 +4,11 @@ import Banner from "./componentes/Banner";
 import Formulario from "./componentes/Formulario";
 import Time from "./componentes/Time";
 import Rodape from "./componentes/Rodape";
+import { IColaborador, INovoColaborador } from "./compartilhado/interfaces/IColaborador";
+import { INovoTime, ITime } from "./compartilhado/interfaces/ITime";
 
 function App() {
-  const [times, setTimes] = useState([
+  const [times, setTimes] = useState<ITime[]>([
     { id: uuidv4(), nome: "Programação", cor: "#57C278" },
     { id: uuidv4(), nome: "Front-End", cor: "#82CFFA" },
     { id: uuidv4(), nome: "Data Science", cor: "#A6D157" },
@@ -235,20 +237,19 @@ function App() {
     }
   ];
 
-  const [colaboradores, setColaboradores] = useState(inicial);
+  const [colaboradores, setColaboradores] = useState<IColaborador[]>(inicial);
 
-  function deletarColaborador(id) {
+  function deletarColaborador(id: string) {
     setColaboradores(
       colaboradores.filter(colaborador => colaborador.id !== id)
     );
   }
 
-  const cadastrarNovoColaborador = colaborador => {
-    colaborador.id = uuidv4();
-    setColaboradores([...colaboradores, colaborador]);
+  const cadastrarNovoColaborador = (colaborador: INovoColaborador) => {
+    setColaboradores([...colaboradores, { ...colaborador, id: uuidv4(), favorito: false }]);
   };
 
-  function mudarCorTime(cor, id) {
+  function mudarCorTime(cor: string, id: string) {
     setTimes(
       times.map(time => {
         if (time.id === id) {
@@ -259,11 +260,11 @@ function App() {
     );
   }
 
-  function criarTime(novoTime) {
+  function criarTime(novoTime: INovoTime) {
     setTimes([...times, { ...novoTime, id: uuidv4() }]);
   }
 
-  function resolverFavorito(id) {
+  function resolverFavorito(id: string) {
     setColaboradores(
       colaboradores.map(colaborador => {
         if (colaborador.id === id) {

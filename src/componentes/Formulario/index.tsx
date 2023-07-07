@@ -3,13 +3,13 @@ import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import Botao from '../Botao';
 import { useState } from 'react';
-import { IColaborador } from '../../compartilhado/interfaces/IColaborador';
-import { ITime } from '../../compartilhado/interfaces/ITime';
+import { IColaborador, INovoColaborador } from '../../compartilhado/interfaces/IColaborador';
+import { INovoTime, ITime } from '../../compartilhado/interfaces/ITime';
 import { Interface } from 'readline';
 
 interface FormularioProps {
-  aoNovoColaboradorCadastrado: ({ }) => void
-  criarNovoTime: ({ }) => void
+  aoNovoColaboradorCadastrado: (novoColaborador: INovoColaborador) => void
+  criarNovoTime: (novoTime: INovoTime) => void
   times: string[]
 }
 

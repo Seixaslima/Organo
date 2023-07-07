@@ -3,3 +3,8 @@ export interface ITime {
   nome: string
   cor: string
 }
+
+export interface INovoTime {
+  nome: string
+  cor: string
+}
